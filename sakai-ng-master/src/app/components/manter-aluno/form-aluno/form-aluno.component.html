@@ -1,0 +1,6 @@
+<form [formGroup]="form">
+    <input id="nome" formControlName="nome" type="text" placeholder="Nome" pInputText class="w-full mb-3" style="padding:1rem;">
+    <input id="nome" formControlName="sobrenome" type="text" placeholder="Sobrenome" pInputText class="w-full mb-3" style="padding:1rem;">
+    <input id="nome" formControlName="idade" type="text" placeholder="Idade" pInputText class="w-full mb-3" style="padding:1rem;">
+    <button pButton pRipple label="Cadastrar" class="w-full p-3 text-xl mt-3" (click)="cadastrar()"></button>
+</form>
