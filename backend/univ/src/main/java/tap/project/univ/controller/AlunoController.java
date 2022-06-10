@@ -21,7 +21,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/alunos")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 public class AlunoController {
 
     private final AlunoService service;

@@ -9,6 +9,9 @@ const routes: Routes = [
     },
     {
         path: '', component: ListarAlunoComponent
+    },
+    {
+        path: 'atualizar/:id', component: FormAlunoComponent,
     }
 ];
 

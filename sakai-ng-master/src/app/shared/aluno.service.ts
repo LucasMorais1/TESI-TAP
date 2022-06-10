@@ -31,8 +31,23 @@ export class AlunoService {
     excluir(id: number) {
         return this.http.delete(`${this.path}/${id}`, {
             headers: {
-                'Authorization': localStorage.getItem('token'),
-                'Access-Control-Allow-Origin': '*'
+                'Authorization': localStorage.getItem('token')
+            }
+        });
+    }
+
+    buscarPorId(id: number) {
+        return this.http.get(`${this.path}/${id}`, {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        });
+    }
+
+    update(aluno: Aluno) {
+        return this.http.put(`${this.path}`, aluno, {
+            headers: {
+                'Authorization': localStorage.getItem('token')
             }
         });
     }

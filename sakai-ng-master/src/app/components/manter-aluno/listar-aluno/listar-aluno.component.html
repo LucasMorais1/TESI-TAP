@@ -1,3 +1,5 @@
+<button pButton pRipple label="Cadastrar" class="mb-3 text-xl mt-3" (click)="toCadastrar()"></button>
+
 <p-table
     #tabela
     [rows]="3"
@@ -30,7 +32,10 @@
             </td>
             <td>
                 <span (click)="excluir(aluno.id)">
-                    <i class="pi pi-trash cursor-pointer"></i>
+                    <i class="pi pi-trash cursor-pointer mr-3"></i>
+                </span>
+                <span (click)="editar(aluno.id)">
+                    <i class="pi pi-pencil cursor-pointer"></i>
                 </span>
             </td>
             </tr>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AlunoService } from './../../../shared/aluno.service';
 
@@ -13,22 +14,28 @@ export class FormAlunoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     id: new FormControl(null),
-    nome: new FormControl(null, Validators.required),
+    nome: new FormControl('', Validators.required),
     sobrenome: new FormControl('', Validators.required),
     idade: new FormControl(null, Validators.required)
   });
 
   constructor(
     private alunoService: AlunoService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.buscarParametrosRota();
   }
 
-  cadastrar() {
+  salvar() {
     if (this.form.valid) {
-      this.alunoService.salvar(this.form.value).subscribe();
+      if (this.form.get('id').value) {
+        this.alunoService.update(this.form.value).subscribe();
+      } else {
+        this.alunoService.salvar(this.form.value).subscribe();
+      }
     } else {
       this.messageService.add({
         severity: 'error', summary: 'Erro', detail: 'Campos obrigatórios não preenchidos'
@@ -36,4 +43,12 @@ export class FormAlunoComponent implements OnInit {
     }
   }
 
+  buscarParametrosRota() {
+    this.route.params.subscribe((params: Params) => {
+      const id = params.id;
+      if (id) {
+        this.alunoService.buscarPorId(id).subscribe(res => this.form.setValue(res));
+      }
+    });
+  }
 }

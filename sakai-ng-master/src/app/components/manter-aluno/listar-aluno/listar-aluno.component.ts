@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Aluno } from './../../../domains/aluno';
 import { AlunoService } from './../../../shared/aluno.service';
 
@@ -10,7 +11,8 @@ import { AlunoService } from './../../../shared/aluno.service';
 export class ListarAlunoComponent implements OnInit {
 
   constructor(
-    private alunoService: AlunoService
+    private alunoService: AlunoService,
+    private router: Router
   ) { }
 
   alunos: Aluno[] = []
@@ -28,4 +30,11 @@ export class ListarAlunoComponent implements OnInit {
     this.buscarAlunos();
   }
 
+  editar(id: number) {
+    this.router.navigateByUrl(`/alunos/atualizar/${id}`)
+  }
+
+  toCadastrar() {
+    this.router.navigateByUrl('/alunos/cadastrar')
+  }
 }
